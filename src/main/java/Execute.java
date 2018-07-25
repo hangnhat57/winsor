@@ -1,21 +1,19 @@
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class main {
-    static WebDriver driver;
-    public static final String SEARCH_BUTTON = "//button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'search')]";
-    public static final String SEARCH_INPUT = "//input[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'search')]";
-    public static final String SEARCH_A = "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'search')]";
-    public static String inputSource;
-    public static String outputSource;
+public class Execute {
+    private static WebDriver driver;
+    private static final String SEARCH_BUTTON = "//button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'search')]";
+    private static final String SEARCH_INPUT = "//input[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'search')]";
+    private static final String SEARCH_A = "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'search')]";
+
+
     public static void main(String[] args) throws InterruptedException, IOException {
-        inputSource = Actions.getEnv("INPUT");
-        outputSource = Actions.getEnv("OUTPUT");
+        String inputSource = Actions.getEnv("INPUT");
+        String outputSource = Actions.getEnv("OUTPUT");
        List<HashMap<String, String>> result =  Actions.data(inputSource,"Sheet1");
         for (HashMap<String,String> element:result
              ) {
@@ -45,7 +43,7 @@ public class main {
             driver.quit();
         }
         System.out.println(result);
-        Actions.writeResultToExcel(result,outputSource);
+        Actions.writeResultToExcel(result, outputSource);
     }
 
     private static String getStatus(String Xpath){
